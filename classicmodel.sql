@@ -1,4 +1,8 @@
+<<<<<<< HEAD
 				
+=======
+					-- Focus: SELECT, WHERE, ORDER BY, LIMIT --
+>>>>>>> 7d4d1b3bb79685d49bdd9662d90692a9a4bc38ba
 -- all records from the customers table.
 select * from classicmodels.customers;
 
@@ -35,6 +39,10 @@ select amount from classicmodels.payments where amount >= 50000;
 -- total number of customers
 select count(*) from classicmodels.customers;
 
+<<<<<<< HEAD
+=======
+					-- Focus: GROUP BY, HAVING, COUNT, SUM, AVG --
+>>>>>>> 7d4d1b3bb79685d49bdd9662d90692a9a4bc38ba
 -- how many customers are there in each country
 select country , count(*) as CustPerCountry
 from classicmodels.customers group by country;
@@ -81,6 +89,7 @@ where p.customerNumber is null;
 -- total quantity ordered per product
 select productCode , sum(quantityOrdered) as TotalQuantity
 from classicmodels.orderdetails 
+<<<<<<< HEAD
 group by productCode;
 
 					-- INNER JOIN, LEFT JOIN, RIGHT JOIN
@@ -159,3 +168,6 @@ limit 1;
 
  
 
+=======
+group by productCode;
+>>>>>>> 7d4d1b3bb79685d49bdd9662d90692a9a4bc38ba

@@ -68,6 +68,70 @@ group by officeCode
 order by NumOfEmpl desc
 limit 1;
 
+-- Show the customer name and order number for customers who have placed at least one order
+select c.customerName, o.orderNumber 
+from classicmodels.customers c 
+inner join classicmodels.orders o 
+on c.customerNumber = o.customerNumber;
+
+-- Display the order number, product name, quantity ordered, and price each for all ordered products
+select od.orderNumber, p.productName, od.quantityOrdered, od.priceEach
+from classicmodels.orderdetails od
+inner join classicmodels.products p
+on od.productCode = p.productCode;
+
+-- List the customer name, payment date, and amount for customers who have made payments
+select c.customerName, p.paymentDate, p.amount
+from classicmodels.customers c
+inner join classicmodels.payments p
+on c.customerNumber = p.customerNumber;
+
+-- total quantity sold and total revenue for each product
+select p.productName, sum(o.quantityOrdered) as TotalQuantity,
+sum(o.quantityOrdered * o.priceEach) as TotalRevenue from classicmodels.products p
+inner join classicmodels.orderdetails o 
+on p.productCode = o.productCode
+group by p.productName;
+
+-- Show the employee name and the customers they handle
+select concat(e.firstName,' ',e.lastName) as EmployeeName, 
+c.customerName,c.customerNumber
+from classicmodels.employees e
+inner join classicmodels.customers c 
+on e.employeeNumber = c.salesRepEmployeeNumber;
+
+-- Show all orders and the customer name, even if some orders do not have a matching customer
+select c.customerName, o.orderNumber
+from classicmodels.customers c
+right join classicmodels.orders o
+on c.customerNumber = o.customerNumber;
+
+-- Display all payments along with customer names, including payments that are not linked to any customer
+select c.customerNumber, c.customerName, p.amount
+from classicmodels.customers c
+right join classicmodels.payments p
+on p.customerNumber = c.customerNumber;
+
+-- List all order details and their product names, even if some order records do not have a matching product
+select o.orderNumber, o.productCode, o.quantityOrdered,
+o.priceEach, o.orderLineNumber, p.productName
+from classicmodels.products p
+right join classicmodels.orderdetails o
+on p.productCode = o.productCode;
+
+-- Find orders that do not have a corresponding customer 
+select c.customerName, c.customerNumber, o.orderNumber
+from classicmodels.customers c
+right join classicmodels.orders o 
+on c.customerNumber = o.customerNumber
+where c.customerNumber is null;
+
+
+
+
+
+
+
 
 
 
