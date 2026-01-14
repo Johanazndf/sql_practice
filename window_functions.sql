@@ -65,4 +65,15 @@ left join classicmodels.customers c
 on e.employeeNumber = c.salesRepEmployeeNumber
 group by e.employeeNumber, e.firstName, e.lastName;
 
+-- detect suspicious payments by finding payments that are more than 2× the customer’s average payment amount
+select * from (
+select customerNumber,checkNumber,paymentDate,amount,
+avg(amount) over (partition by customerNumber) as avgAmount
+from classicmodels.payments
+) t
+where amount > 2 * avgAmount
+order by amount desc;
+
+
+
 
