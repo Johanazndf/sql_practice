@@ -81,4 +81,7 @@ inner join classicmodels.offices o
 on e.officeCode = o.officeCode
 group by e.officeCode,e.reportsTo;
 
-
+-- Show total amount spent by each customer
+ select customerNumber, sum(amount) as Totalspent 
+ from classicmodels.payments
+ group by customerNumber;
