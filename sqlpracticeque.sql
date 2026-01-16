@@ -135,6 +135,11 @@ on od.productCode = p.productCode
 group by od.productCode,p.productName
 order by total_revenue desc;
 
+-- -- Find total number of payments made by each customer
+select customerNumber, count(amount) as TotalNumPay
+from classicmodels.payments
+group by customerNumber;
+
 
 
 
