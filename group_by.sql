@@ -85,3 +85,7 @@ group by e.officeCode,e.reportsTo;
  select customerNumber, sum(amount) as Totalspent 
  from classicmodels.payments
  group by customerNumber;
+ 
+ -- the countries where the count of customers >=5
+select country, count(customerNumber) from classicmodels.customers 
+group by country having count(customerNumber) >=5;
