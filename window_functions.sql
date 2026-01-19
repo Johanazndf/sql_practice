@@ -74,9 +74,13 @@ from classicmodels.payments
 where amount > 2 * avgAmount
 order by amount desc;
 
--- Rank the employees based on their total amount
-select customerNumber, sum(amount) over (partition by customerNumber) as TotalAmt
+-- Rank the employees based on their amount
+select customerNumber,
+rank() over (order by customerNumber desc) as amt_ranking
 from classicmodels.payments;
 
-
+-- using dense_rank rank the employees based on their amount
+select customerNumber,
+dense_rank() over (order by customerNumber desc) as rank_amt
+from classicmodels.payments;
 
