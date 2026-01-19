@@ -74,6 +74,9 @@ from classicmodels.payments
 where amount > 2 * avgAmount
 order by amount desc;
 
+-- Rank the employees based on their total amount
+select customerNumber, sum(amount) over (partition by customerNumber) as TotalAmt
+from classicmodels.payments;
 
 
 
