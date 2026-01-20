@@ -8,5 +8,6 @@ The queries cover beginner to intermediate data analysis concepts such as:
 - GROUP BY and HAVING
 - JOINs
 - Aggregate functions (COUNT, SUM, AVG)
+- Window_functions and window frames
 
 This project is intended for learning and portfolio purposes.
