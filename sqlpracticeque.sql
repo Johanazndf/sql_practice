@@ -140,6 +140,12 @@ select customerNumber, count(amount) as TotalNumPay
 from classicmodels.payments
 group by customerNumber;
 
+-- unbounded preceding and following
+select customerNumber, paymentDate, sum(amount)
+over(partition by customerNumber order by paymentDate rows between
+unbounded preceding and unbounded following) as running_amt
+from classicmodels.payments;
+
 
 
 
